@@ -1,10 +1,10 @@
-# Game of Spoils
+# Got Spoil Blocker
 #### The Game of Thrones Spoiler Blocker -- an open-source Chrome extension
 
 
 
 ### Get the current version 
-https://chrome.google.com/webstore/detail/gameofspoils-game-of-thro/ipjhpmdippbajafafidlinjjmfkdamci?hl=en
+
 
 
 ### How to get setup
