@@ -2,8 +2,8 @@ var loadUserPreferencesAndUpdate, sessionSpoilersBlocked, storeUserPreferences, 
 
 sessionSpoilersBlocked = 0;
 
-document.addEventListener('DOMContentLoaded', (function(_this) {
-  return function() {
+document.addEventListener('DOMContentLoaded', (function (_this) {
+  return function () {
     _this.blockingEnabledToggle = document.getElementById('blocking-enabled-toggle');
     _this.showSpecificWordToggle = document.getElementById('show-specific-word-toggle');
     _this.destroySpoilersToggle = document.getElementById('destroy-spoilers-toggle');
@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', (function(_this) {
     _this.extraWordsHolder.addEventListener('keyup', storeUserPreferences);
     $('.onoffswitch-switch').css('background-image', 'url("assets/images/targaryen.png")');
     loadUserPreferencesAndUpdate();
-    return setTimeout((function() {
+    return setTimeout((function () {
       return chrome.runtime.sendMessage({
         fetchPopupTotal: true
-      }, function(response) {
+      }, function (response) {
         if (response.newTotal) {
           sessionSpoilersBlocked = response.newTotal;
           return updateSessionSpoilersBlocked();
@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', (function(_this) {
   };
 })(this));
 
-loadUserPreferencesAndUpdate = (function(_this) {
-  return function() {
-    return loadUserPreferences(function() {
+loadUserPreferencesAndUpdate = (function (_this) {
+  return function () {
+    return loadUserPreferences(function () {
       _this.blockingEnabledToggle.checked = _this.userPreferences.blockingEnabled;
       _this.showSpecificWordToggle.checked = _this.userPreferences.showSpecificWordEnabled;
       _this.destroySpoilersToggle.checked = _this.userPreferences.destroySpoilers;
@@ -38,8 +38,8 @@ loadUserPreferencesAndUpdate = (function(_this) {
   };
 })(this);
 
-storeUserPreferences = (function(_this) {
-  return function() {
+storeUserPreferences = (function (_this) {
+  return function () {
     var data;
     data = {};
     data[DATA_KEY] = JSON.stringify({
@@ -49,29 +49,29 @@ storeUserPreferences = (function(_this) {
       extraWordsToBlock: _this.extraWordsHolder.value
     });
     cl("Storing user preferences: " + data);
-    return chrome.storage.sync.set(data, function(response) {
+    return chrome.storage.sync.set(data, function (response) {
       return chrome.runtime.sendMessage({
         userPreferencesUpdated: true
-      }, (function() {}));
+      }, (function () {}));
     });
   };
 })(this);
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.newSpoilerBlocked) {
     sessionSpoilersBlocked += 1;
     return updateSessionSpoilersBlocked();
   }
 });
 
-updateSessionSpoilersBlocked = function() {
+updateSessionSpoilersBlocked = function () {
   var _gaq, newText;
   newText = sessionSpoilersBlocked + " spoilers prevented in this session.";
   document.getElementById('num-spoilers-prevented').textContent = newText;
   _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-64072033-1']);
+  _gaq.push(['_setAccount', 'UA-137354783-1']);
   _gaq.push(['_trackPageview']);
-  return (function() {
+  return (function () {
     var ga, s;
     ga = document.createElement('script');
     ga.type = 'text/javascript';
