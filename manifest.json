@@ -41,10 +41,13 @@
         "*://www.tumblr.com/*",
         "*://www.youtube.com/*"
       ],
-      "css": ["assets/fonts/lancelot.css", "styles/content.css"],
+      "css": ["styles/content.css"],
       "js":  ["scripts/vendor/jquery.min.js", "scripts/constants.js", "scripts/helpers.js", "scripts/content.js"]
     }
   ],
+  "web_accessible_resources": [
+    "assets/fonts/*"
+] ,
   "permissions": [
     "activeTab",
     "storage"

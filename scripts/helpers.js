@@ -2,17 +2,17 @@ var $log, GAME_O_SPOILERS_DEBUG_MODE, addClass, cl, debounce, debounce_timeout, 
 
 debounce_timeout = null;
 
-debounce = function (fn_to_debounce) {
+debounce = function(fn_to_debounce) {
   if (debounce_timeout !== null) {
     return;
   }
-  return debounce_timeout = setTimeout((function () {
+  return debounce_timeout = setTimeout((function() {
     fn_to_debounce();
     return debounce_timeout = null;
   }), 150);
 };
 
-hasClass = function (element, className) {
+hasClass = function(element, className) {
   if (element.classList) {
     return element.classList.contains(className);
   } else {
@@ -20,7 +20,7 @@ hasClass = function (element, className) {
   }
 };
 
-addClass = function (element, className) {
+addClass = function(element, className) {
   if (element.classList) {
     return element.classList.add(className);
   } else if (!hasClass(element, className)) {
@@ -28,17 +28,17 @@ addClass = function (element, className) {
   }
 };
 
-String.prototype.capitalizeFirstLetter = function () {
+String.prototype.capitalizeFirstLetter = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-String.prototype.escapeRegex = function () {
+String.prototype.escapeRegex = function() {
   return this.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 };
 
-loadUserPreferences = (function (_this) {
-  return function (callback) {
-    return chrome.storage.sync.get(DATA_KEY, function (result) {
+loadUserPreferences = (function(_this) {
+  return function(callback) {
+    return chrome.storage.sync.get(DATA_KEY, function(result) {
       var userPreferencesJSONString;
       userPreferencesJSONString = result[DATA_KEY];
       if (!userPreferencesJSONString) {
@@ -78,7 +78,7 @@ if (GAME_O_SPOILERS_DEBUG_MODE) {
   $log = $('body > .debug-floaty-thingy');
 }
 
-cl = function (log_line) {
+cl = function(log_line) {
   if (!GAME_O_SPOILERS_DEBUG_MODE) {
     return;
   }
@@ -86,7 +86,7 @@ cl = function (log_line) {
   $log.text(log_line);
   $log.addClass('show');
   clearTimeout(log_timeout);
-  return log_timeout = setTimeout((function () {
+  return log_timeout = setTimeout((function() {
     return $log.removeClass('show');
   }), 2000);
 };

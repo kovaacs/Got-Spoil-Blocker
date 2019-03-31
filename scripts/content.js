@@ -16,17 +16,17 @@ settings = {
 
 $document = $(document);
 
-$document.ready(function () {
+$document.ready(function() {
   return chrome.runtime.sendMessage({
     userPreferencesRequested: true
-  }, (function (_this) {
-    return function (response) {
+  }, (function(_this) {
+    return function(response) {
       var extra_words_to_block;
       settings.show_specific_words = response.showSpecificWordEnabled;
       settings.execute_trailors = response.destroySpoilers;
-      extra_words_to_block = response.extraWordsToBlock.split(',').map(function (word) {
+      extra_words_to_block = response.extraWordsToBlock.split(',').map(function(word) {
         return word.trim().escapeRegex();
-      }).filter(function (word) {
+      }).filter(function(word) {
         return !!word;
       });
       settings.spoiler_words_regex = new RegExp(SPOILER_WORDS_LIST.concat(extra_words_to_block).join('|'), 'i');
@@ -37,27 +37,27 @@ $document.ready(function () {
   })(this));
 });
 
-incrementBadgeNumber = function () {
+incrementBadgeNumber = function() {
   return chrome.runtime.sendMessage({
     incrementBadge: true
-  }, (function () {}));
+  }, (function() {}));
 };
 
-getDeathName = function () {
+getDeathName = function() {
   return DEATH_NAMES[Math.floor(Math.random() * DEATH_NAMES.length)];
 };
 
-initiateSpoilerBlocking = function (selector_string, remove_parent) {
+initiateSpoilerBlocking = function(selector_string, remove_parent) {
   searchForAndBlockSpoilers(selector_string, true, remove_parent);
-  return $document.mousemove(function () {
-    return debounce(function () {
+  return $(document).bind('DOMSubtreeModified', function () {
+    return debounce(function() {
       return searchForAndBlockSpoilers(selector_string, false, remove_parent);
     });
   });
 };
 
-searchForAndBlockSpoilers = (function (_this) {
-  return function (feed_elements_selector, force_update, remove_parent) {
+searchForAndBlockSpoilers = (function(_this) {
+  return function(feed_elements_selector, force_update, remove_parent) {
     var $new_feed_elems, last_feed_elem_text, new_last_text, new_length;
     $new_feed_elems = $(feed_elements_selector);
     if (remove_parent) {
@@ -72,7 +72,7 @@ searchForAndBlockSpoilers = (function (_this) {
       cl("Updating potential spoilers, previously '" + num_feed_elems + "', now '" + new_length + "'.");
       last_feed_elem_text = new_last_text;
       num_feed_elems = new_length;
-      return $new_feed_elems.each(function () {
+      return $new_feed_elems.each(function() {
         var matchedSpoiler;
         if (this.className.search(/glamoured/) > -1) {
           return;
@@ -86,7 +86,7 @@ searchForAndBlockSpoilers = (function (_this) {
   };
 })(this);
 
-exileTraitorousSpoiler = function ($traitor, dark_words_of_spoilage) {
+exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
   var $glamour, capitalized_spoiler_words, glamour_string, specific_words;
   incrementBadgeNumber();
   if (settings.execute_trailors) {
@@ -100,7 +100,7 @@ exileTraitorousSpoiler = function ($traitor, dark_words_of_spoilage) {
   glamour_string = "<div class='spoiler-glamour " + (this.smaller_font_mode ? 'small' : '') + " " + (this.reddit_mode ? 'redditized' : '') + "'> <h3 class='spoiler-obituary'>A potential spoiler here " + (getDeathName()) + specific_words + ".</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3> </div>";
   $(glamour_string).appendTo($traitor);
   $glamour = $traitor.find('.spoiler-glamour');
-  return $glamour.on('click', function (ev) {
+  return $glamour.on('click', function(ev) {
     var specific_words_for_confirm;
     ev.stopPropagation();
     ev.preventDefault();
@@ -109,14 +109,14 @@ exileTraitorousSpoiler = function ($traitor, dark_words_of_spoilage) {
       return;
     }
     $glamour.addClass('revealed');
-    return setTimeout((function () {
+    return setTimeout((function() {
       return $glamour.remove();
     }), 3500);
   });
 };
 
-initialize = (function (_this) {
-  return function () {
+initialize = (function(_this) {
+  return function() {
     var url;
     url = window.location.href.toLowerCase();
     if (url.indexOf('facebook') > -1) {
