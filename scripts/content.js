@@ -96,8 +96,8 @@ exileTraitorousSpoiler = function($traitor, dark_words_of_spoilage) {
   capitalized_spoiler_words = dark_words_of_spoilage.capitalizeFirstLetter();
   cl("A bespoiling traitor in our midst! the forbidden words hath been spake: '" + capitalized_spoiler_words + "'.");
   $traitor.addClass('glamoured');
-  specific_words = settings.show_specific_words ? ", because it dared mention the phrase '" + capitalized_spoiler_words + "'" : "";
-  glamour_string = "<div class='spoiler-glamour " + (this.smaller_font_mode ? 'small' : '') + " " + (this.reddit_mode ? 'redditized' : '') + "'> <h3 class='spoiler-obituary'>A potential spoiler here " + (getDeathName()) + specific_words + ".</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler (!!!)</h3> </div>";
+  specific_words = settings.show_specific_words ? "</br><span class='phrase'>phrase: '" + capitalized_spoiler_words + "'</span>" : "";
+  glamour_string = "<div class='spoiler-glamour " + (this.smaller_font_mode ? 'small' : '') + " " + (this.reddit_mode ? 'redditized' : '') + "'> <h4 class='top-of-spoil'>spoiler warning</h4><h3 class='spoiler-obituary'> " + (getDeathName()) + specific_words + ".</h3> <h3 class='click-to-view-spoiler' >Click to view spoiler...</h3> </div>";
   $(glamour_string).appendTo($traitor);
   $glamour = $traitor.find('.spoiler-glamour');
   return $glamour.on('click', function(ev) {

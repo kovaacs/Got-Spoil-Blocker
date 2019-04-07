@@ -1,10 +1,17 @@
 @font-face {
     font-family: 'got';
-    src: url('../assets/fonts/got.ttf') format('truetype');
+    src: url('chrome-extension://__MSG_@@extension_id__/assets/fonts/got.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url("chrome-extension://__MSG_@@extension_id__/assets/fonts/Vazir-WOL.woff") format("woff");
+    font-weight: normal
 }
 
 .spoiler-glamour {
-    font-family: 'got', Tahoma, serif;
+    padding: 20px;
+    font-family: 'got', Vazir, serif !important;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -29,6 +36,30 @@
     top: 100%
 }
 
+.spoiler-glamour h3, .spoiler-glamour h4 {
+    font-family: 'got',Vazir !important;
+    font-weight: 100;
+}
+
+span.phrase {
+    font-family: 'got', Vazir !important;
+    font-size: 14px;
+    display: inline-block;
+    padding-top: 13px;
+}
+
+.spoiler-glamour h3 {
+    color: rgb(105, 138, 145) !important;
+    font-size: 14px !important;
+    line-height: 29px !important;
+    word-spacing: 3px !important;
+}
+
+.spoiler-glamour h4 {
+    color: rgb(140, 140, 140);
+    -webkit-font-smoothing: antialiased;
+}
+
 .spoiler-glamour.revealed h3 {
     opacity: 0 !important;
     -webkit-transition: opacity 1700ms ease-in;
@@ -39,35 +70,28 @@
 }
 
 .spoiler-glamour.small h3 {
-    font-size: 18px !important;
-    line-height: 18px !important
+    font-size: 14px !important;
+    line-height: 35px !important
 }
 
 .spoiler-glamour.redditized h3 {
-    font-size: 23px !important;
+    font-size: 19px !important;
     line-height: 23px !important;
     margin-top: 3px
 }
 
 .spoiler-glamour h3 {
-    display: inline;
-    color: #a5d5ff !important;
-    font-size: 35px !important;
     line-height: 35px !important;
-    font-weight: normal;
+    font-weight: 100;
     margin-top: 12px;
     opacity: 1;
     text-transform: none !important;
-    background: black !important;
     padding: 0 !important
 }
 
 .spoiler-glamour h3.click-to-view-spoiler {
-    opacity: 0;
-    color: red !important;
-    font-size: 35px !important;
-    line-height: 35px !important;
-    padding-left: 16px
+    font-size: 12px !important;
+    opacity: .8;
 }
 
 .spoiler-glamour:hover {
@@ -85,7 +109,7 @@
 
 article.short .spoiler-glamour.small h3 {
     margin: 0;
-    font-size: 18px !important;
+    font-size: 14px !important;
     line-height: 18px !important
 }
 
