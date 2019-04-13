@@ -1,6 +1,6 @@
 # Game of Spoils
 
-**Game of Spoils** is an updated version of spoiler for ***Game of Thrones*** movie which blocks unassociated terms on social media such as: *YouTube*, *Twitter*, *Reddit*, and *Google News*.
+**Game of Spoils** is an updated version of spoil blocker for ***Game of Thrones*** movie which blocks unassociated terms on social media such as: *YouTube*, *Twitter*, *Reddit*, and *Google News*.
 
 ## Features
 
@@ -13,4 +13,3 @@
 - [**Game of Spoils on GitHub**](https://github.com/mimalef70/Got-Spoil-Blocker)
 
 - [**Mostafa Alahyari on Twitter**](https://twitter.com/mimalef70)
-
