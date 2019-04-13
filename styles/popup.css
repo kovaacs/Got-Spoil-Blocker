@@ -83,7 +83,9 @@
 }
 
 #game-of-spoilers-popup .setting-holder .setting-text {
-    padding-left: 1px
+    padding-left: 1px;
+    letter-spacing: 1px;
+    word-spacing: 5px;
 }
 
 #game-of-spoilers-popup .setting-holder .setting-text.centered {
